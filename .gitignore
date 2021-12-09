@@ -1,2 +1,4 @@
 colored_images
 gaussian_filtered_images
+__pycache__
+.vscode
