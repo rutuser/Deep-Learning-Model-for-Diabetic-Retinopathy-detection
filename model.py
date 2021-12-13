@@ -30,7 +30,7 @@ class Model:
         model.add(base_model)
         model.add(GlobalMaxPool2D())
         model.add(Dense(512, activation='relu'))
-        model.add(Dense(2, activation='sigmoid'))
+        model.add(Dense(5, activation='sigmoid'))
 
         self.model = model
 
@@ -39,7 +39,7 @@ class Model:
 
     def compile(self) -> None:
         self.model.compile(loss="binary_crossentropy",
-                           optimizer=Adadelta(learning_rate=0.0001),
+                           optimizer=Adadelta(learning_rate=0.001),
                            metrics=["accuracy"])
 
     def train(self, trainX, trainY, valX, valY, batch_size, epochs):
@@ -86,5 +86,5 @@ class Model:
         # Evaluando el modelo de predicción con las imágenes de test
         print(classification_report(expected_clases, pred.argmax(axis=1)))
 
-    def save(self) -> None:
-        self.model.save_weights('sigmoid_model.h5')
+    def save(self, target_path) -> None:
+        self.model.save_weights(target_path)
